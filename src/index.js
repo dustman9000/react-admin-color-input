@@ -9,7 +9,7 @@ import pure from 'recompose/pure';
 
 require('./ColorInput.css');
 
-const ColorFieldComponent = ({ source, record = {}, className }) =>
+const ColorFieldComponent = ({ source, record = {}, className, showText = true }) =>
   (
     <div style={{ display: 'flex' }}>
       <div style={{
@@ -19,11 +19,16 @@ const ColorFieldComponent = ({ source, record = {}, className }) =>
         marginRight: '5px',
       }}
       />
-      <span className={className}>{get(record, source)}</span>
+      {
+        showText?
+          <span className={className}>{get(record, source)}</span>
+          : null
+      }
     </div>
   );
 
 ColorFieldComponent.propTypes = {
+  showText: PropTypes.bool,
   addLabel: PropTypes.bool,
   className: PropTypes.string,
   elStyle: PropTypes.object,
